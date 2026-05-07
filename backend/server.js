@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import rateLimit from 'express-rate-limit';
 import apiRoutes from './routes/api.js';
+import paymentRoutes from './routes/payment.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +30,7 @@ app.use('/api', apiLimiter);
 
 // Routes
 app.use('/api', apiRoutes);
+app.use('/api/payment', paymentRoutes);
 
 // Health check
 app.get('/health', (req, res) => res.status(200).send('OK'));
