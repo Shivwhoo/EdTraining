@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -12,9 +13,23 @@ export default function Footer() {
                 <img src="/edTraining.avif" alt="EdTraining" className="h-16 w-auto" />
               </Link>
             </div>
-            <p className="text-sm leading-relaxed mb-4">
+            <p className="text-sm leading-relaxed mb-6">
               Bridging academic learning and real-world success through personalized guidance and flexible online programs.
             </p>
+            <div className="flex gap-4">
+              <a href="https://www.linkedin.com/company/theedmentor/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="https://www.linkedin.com/company/theedmentor/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="https://www.linkedin.com/company/theedmentor/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="https://www.linkedin.com/company/theedmentor/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+            </div>
           </div>
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">Contact Info</h3>

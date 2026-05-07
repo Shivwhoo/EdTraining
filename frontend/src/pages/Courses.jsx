@@ -55,6 +55,26 @@ export default function Courses() {
               <ChevronRight className="w-6 h-6 text-slate-400 group-hover:text-brand transition-colors" />
             </Link>
           </div>
+
+          {/* Stats Section */}
+          <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            <div className="bg-[#b3ccff] rounded-2xl p-8 text-center shadow-sm hover:-translate-y-1 transition-transform">
+              <h3 className="text-4xl font-black text-slate-900 mb-3">100+</h3>
+              <p className="text-sm font-semibold text-slate-800">Students Trained</p>
+            </div>
+            <div className="bg-[#b3ccff] rounded-2xl p-8 text-center shadow-sm hover:-translate-y-1 transition-transform">
+              <h3 className="text-4xl font-black text-slate-900 mb-3">21+</h3>
+              <p className="text-sm font-semibold text-slate-800">Expert Trainers</p>
+            </div>
+            <div className="bg-[#b3ccff] rounded-2xl p-8 text-center shadow-sm hover:-translate-y-1 transition-transform">
+              <h3 className="text-4xl font-black text-slate-900 mb-3">100%</h3>
+              <p className="text-sm font-semibold text-slate-800">Y-o-Y Retention of Students</p>
+            </div>
+            <div className="bg-[#b3ccff] rounded-2xl p-8 text-center shadow-sm hover:-translate-y-1 transition-transform">
+              <h3 className="text-4xl font-black text-slate-900 mb-3">8.7</h3>
+              <p className="text-sm font-semibold text-slate-800">Students Satisfaction</p>
+            </div>
+          </div>
         </div>
       </div>
     </>

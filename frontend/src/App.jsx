@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 // Layout
 import Layout from './components/Layout';
@@ -24,6 +25,7 @@ import EngineeringAllBranches from './pages/EngineeringAllBranches';
 function App() {
   return (
     <Router>
+      <Toaster position="bottom-right" richColors />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

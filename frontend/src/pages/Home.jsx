@@ -172,7 +172,18 @@ export default function Home() {
       </section>
 
       <section className="py-8 bg-slate-100 text-center">
-        <p className="text-slate-500 text-sm">Advertisement placeholder text</p>
+        <p className="text-slate-500 text-sm">
+          <a href="https://theedmentor.com/" target='blank'>
+          <div>
+            Compass Starter
+          </div>  
+          </a>
+          <a href="https://theedmentor.com/login" target='blank'>
+          <div>
+            Compass Starter Enroll Now
+          </div>  
+          </a>
+        </p>
       </section>
     </>
   );

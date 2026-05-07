@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const schema = z.object({
   studentName: z.string().optional(),
@@ -38,12 +39,15 @@ export default function DemoBooking() {
       });
       if (res.ok) {
         setStatus('success');
+        toast.success('Demo class requested successfully!');
         reset();
       } else {
         setStatus('error');
+        toast.error('Something went wrong. Please try again.');
       }
     } catch (err) {
       setStatus('error');
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
@@ -149,9 +153,6 @@ export default function DemoBooking() {
               >
                 {status === 'submitting' ? 'Submitting...' : 'Register Now'}
               </button>
-              
-              {status === 'success' && <p className="text-green-600 text-center font-medium">Demo class requested successfully!</p>}
-              {status === 'error' && <p className="text-red-600 text-center font-medium">Something went wrong. Please try again.</p>}
             </form>
           </div>
 

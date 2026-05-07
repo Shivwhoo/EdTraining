@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 const schema = z.object({
   fullName: z.string().min(1, 'Full name is required'),
@@ -29,12 +30,15 @@ export default function Contact() {
       });
       if (res.ok) {
         setStatus('success');
+        toast.success('Message sent successfully!');
         reset();
       } else {
         setStatus('error');
+        toast.error('Something went wrong. Please try again.');
       }
     } catch (err) {
       setStatus('error');
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
@@ -105,9 +109,6 @@ export default function Contact() {
               >
                 {status === 'submitting' ? 'Sending...' : 'Send Message'}
               </button>
-              
-              {status === 'success' && <p className="text-green-600 font-medium">Message sent successfully!</p>}
-              {status === 'error' && <p className="text-red-600 font-medium">Something went wrong. Please try again.</p>}
             </form>
           </div>
 

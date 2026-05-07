@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Target, TrendingUp, RefreshCw, CheckCircle2, MonitorPlay, Zap, BookOpen, X, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 
 export default function OnlineSubscription() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -111,7 +112,7 @@ export default function OnlineSubscription() {
   const handlePayment = async (e) => {
     e.preventDefault();
     if (!window.Razorpay) {
-      alert("Razorpay SDK failed to load. Are you online?");
+      toast.error("Razorpay SDK failed to load. Are you online?");
       return;
     }
 
@@ -160,15 +161,15 @@ export default function OnlineSubscription() {
             const verifyData = await verifyRes.json();
             
             if (verifyData.success) {
-              alert("Payment Successful! Welcome to EdTraining. Please check your email for confirmation.");
+              toast.success("Payment Successful! Welcome to EdTraining. Please check your email for confirmation.");
               setIsModalOpen(false);
               setFormData({ fullName: '', email: '', phone: '' });
             } else {
-              alert("Payment verification failed. Please contact support.");
+              toast.error("Payment verification failed. Please contact support.");
             }
           } catch (err) {
             console.error(err);
-            alert("Error verifying payment.");
+            toast.error("Error verifying payment.");
           }
         },
         prefill: {
@@ -183,13 +184,13 @@ export default function OnlineSubscription() {
 
       const paymentObject = new window.Razorpay(options);
       paymentObject.on('payment.failed', function (response) {
-        alert("Payment failed: " + response.error.description);
+        toast.error("Payment failed: " + response.error.description);
       });
       paymentObject.open();
 
     } catch (error) {
       console.error(error);
-      alert("Error: " + error.message);
+      toast.error("Error: " + error.message);
     } finally {
       setIsLoading(false);
     }
