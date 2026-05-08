@@ -25,7 +25,32 @@ import EngineeringAllBranches from './pages/EngineeringAllBranches';
 function App() {
   return (
     <Router>
-      <Toaster position="bottom-right" richColors />
+      {/* Customized Toaster to match the Tactile Notebook / Brutalist theme */}
+      <Toaster 
+        position="bottom-right" 
+        toastOptions={{
+          className: 'font-mono font-bold uppercase tracking-wider border-2 border-[#1C1C1C] shadow-[6px_6px_0px_rgba(28,28,28,1)] rounded-none',
+          style: {
+            backgroundColor: '#FDFBF7',
+            color: '#1C1C1C',
+            borderRadius: '0px',
+          },
+          success: {
+            style: {
+              backgroundColor: '#A7F3D0', // Mint highlighter tape for success
+              border: '2px solid #1C1C1C',
+              color: '#1C1C1C',
+            },
+          },
+          error: {
+            style: {
+              backgroundColor: '#FBCFE8', // Pink highlighter tape for error
+              border: '2px solid #1C1C1C',
+              color: '#1C1C1C',
+            },
+          },
+        }}
+      />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

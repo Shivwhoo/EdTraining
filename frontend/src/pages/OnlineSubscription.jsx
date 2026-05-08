@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Target, TrendingUp, RefreshCw, CheckCircle2, MonitorPlay, Zap, BookOpen, X, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
 
 export default function OnlineSubscription() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,29 +31,29 @@ export default function OnlineSubscription() {
       title: 'Choose Your Plan',
       description: 'Select a subscription tier based on your board, grade, or specific learning needs.',
       icon: Target,
-      color: 'text-blue-500',
-      bg: 'bg-blue-50',
+      color: 'text-[#1C1C1C]',
+      bg: 'bg-[#bfdbfe]',
     },
     {
       title: 'Learn at Your Pace',
       description: 'Access live sessions, recorded modules, and interactive materials whenever you want.',
       icon: MonitorPlay,
-      color: 'text-brand',
-      bg: 'bg-brand/10',
+      color: 'text-[#1C1C1C]',
+      bg: 'bg-[#FEF08A]',
     },
     {
       title: 'Track Your Progress',
       description: 'Get detailed insights into your strengths and areas needing improvement with guided tracking.',
       icon: TrendingUp,
-      color: 'text-green-500',
-      bg: 'bg-green-50',
+      color: 'text-[#1C1C1C]',
+      bg: 'bg-[#A7F3D0]',
     },
     {
       title: 'Upgrade Anytime',
       description: 'Need more subjects or intensive mentorship? Adjust your subscription on the fly.',
       icon: RefreshCw,
-      color: 'text-purple-500',
-      bg: 'bg-purple-50',
+      color: 'text-[#1C1C1C]',
+      bg: 'bg-[#FBCFE8]',
     },
   ];
 
@@ -120,7 +121,6 @@ export default function OnlineSubscription() {
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       
-      // 1. Create order on backend
       const orderRes = await fetch(`${apiUrl}/api/payment/create-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -137,7 +137,6 @@ export default function OnlineSubscription() {
         throw new Error(orderData.errors ? orderData.errors.map(e => e.message).join(', ') : orderData.error);
       }
 
-      // 2. Open Razorpay Checkout
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: orderData.order.amount,
@@ -146,7 +145,6 @@ export default function OnlineSubscription() {
         description: `Subscription: ${selectedPlan.name}`,
         order_id: orderData.order.id,
         handler: async function (response) {
-          // 3. Verify Payment
           try {
             const verifyRes = await fetch(`${apiUrl}/api/payment/verify`, {
               method: 'POST',
@@ -178,7 +176,7 @@ export default function OnlineSubscription() {
           contact: formData.phone
         },
         theme: {
-          color: "#2563EB" // Brand color
+          color: "#1C1C1C" 
         }
       };
 
@@ -205,33 +203,44 @@ export default function OnlineSubscription() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-slate-900 text-white py-20 lg:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <span className="inline-block py-1 px-3 rounded-full bg-brand/20 text-brand-light text-sm font-semibold tracking-wider mb-6">
+      <section className="py-20 lg:py-32 overflow-hidden border-b-4 border-[#1C1C1C]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          
+          <div className="inline-block bg-[#1C1C1C] text-[#FDFBF7] font-mono font-bold uppercase tracking-widest px-4 py-2 mb-8 -rotate-2 shadow-[4px_4px_0px_rgba(254,240,138,1)]">
             REVOLUTIONIZING EDUCATION
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+          </div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-[#1C1C1C] mb-10 leading-tight">
             Education on Your Terms.<br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-light to-blue-400">Pay Only For What You Use.</span>
+            <span className="bg-[#A7F3D0] inline-block px-4 py-1 mt-4 border-4 border-[#1C1C1C] shadow-[8px_8px_0px_rgba(28,28,28,1)] rotate-1 font-mono uppercase tracking-tight">
+              Pay Only For What You Use.
+            </span>
           </h1>
-          <p className="mt-4 text-xl text-slate-300 max-w-3xl mx-auto mb-10">
+          
+          <p className="mt-8 text-xl text-[#4A4A4A] max-w-3xl mx-auto mb-12 font-serif border-b-2 border-dashed border-[#1C1C1C] pb-8 leading-relaxed">
             Say goodbye to rigid traditional courses. Discover flexible, subscription-based learning packages designed around your specific academic goals and timeline.
           </p>
+          
           <div className="flex justify-center">
-            <a href="#explore-tiers" className="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)]">
-              Explore Subscriptions
-            </a>
+            <motion.div whileHover={{ y: -4, x: -4 }} whileTap={{ y: 2, x: 2 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+              <a href="#explore-tiers" className="bg-[#1C1C1C] text-[#FDFBF7] px-8 py-5 text-xl font-mono font-bold uppercase tracking-wider shadow-[8px_8px_0px_rgba(167,243,208,1)] hover:shadow-[10px_10px_0px_rgba(167,243,208,1)] transition-shadow inline-block border-4 border-[#1C1C1C]">
+                Explore Subscriptions
+              </a>
+            </motion.div>
           </div>
+
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-24 bg-[#F4F4F0] border-b-4 border-[#1C1C1C]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">How It Works</h2>
-            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+          
+          <div className="text-center mb-20 relative">
+            <h2 className="text-4xl md:text-5xl font-mono font-black text-[#1C1C1C] uppercase tracking-widest inline-block border-b-4 border-[#1C1C1C] pb-2">
+              How It Works
+            </h2>
+            <p className="mt-8 text-xl text-[#4A4A4A] max-w-2xl mx-auto font-serif">
               Your journey to academic excellence is just four simple steps away. Our platform adapts to you, not the other way around.
             </p>
           </div>
@@ -239,19 +248,35 @@ export default function OnlineSubscription() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => {
               const Icon = step.icon;
+              const rotation = index % 2 === 0 ? '-rotate-1' : 'rotate-2';
+              
               return (
-                <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:-translate-y-1 transition-transform duration-300 relative">
-                  <div className={`w-14 h-14 ${step.bg} rounded-xl flex items-center justify-center mb-6`}>
-                    <Icon className={`w-7 h-7 ${step.color}`} />
+                <motion.div 
+                  key={index} 
+                  whileHover={{ y: -10, rotate: 0 }} 
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className={`bg-[#FDFBF7] p-8 border-4 border-[#1C1C1C] shadow-[8px_8px_0px_rgba(28,28,28,1)] relative ${rotation} flex flex-col`}
+                >
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-10 bg-[#1C1C1C] rounded-full flex items-center justify-center shadow-sm z-10">
+                    <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
                   </div>
-                  <div className="absolute top-8 right-8 text-6xl font-black text-slate-50 opacity-50 select-none">
-                    {index + 1}
+                  
+                  <div className="absolute top-6 right-6 text-6xl font-mono font-black text-[#1C1C1C] opacity-10 select-none">
+                    0{index + 1}
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3 relative z-10">{step.title}</h3>
-                  <p className="text-slate-600 relative z-10">
+                  
+                  <div className={`w-16 h-16 ${step.bg} border-4 border-[#1C1C1C] flex items-center justify-center mb-6 mt-4 shadow-[4px_4px_0px_rgba(28,28,28,1)]`}>
+                    <Icon className={`w-8 h-8 ${step.color}`} />
+                  </div>
+                  
+                  <h3 className="text-xl font-mono font-bold text-[#1C1C1C] uppercase tracking-wider mb-4 border-b-2 border-[#1C1C1C] pb-2 relative z-10">
+                    {step.title}
+                  </h3>
+                  
+                  <p className="text-[#4A4A4A] font-serif leading-relaxed relative z-10 flex-grow">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -259,158 +284,202 @@ export default function OnlineSubscription() {
       </section>
 
       {/* Explore Subscription Tiers */}
-      <section id="explore-tiers" className="py-24 bg-white">
+      <section id="explore-tiers" className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Explore Subscription Tiers</h2>
-            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-              Whether you need intensive board prep or just occasional help with tough concepts, we have a tier for you.
+          
+          <div className="text-center mb-24">
+            <h2 className="text-3xl md:text-5xl font-mono font-black text-[#1C1C1C] uppercase tracking-widest bg-[#FEF08A] inline-block px-8 py-3 border-4 border-[#1C1C1C] shadow-[8px_8px_0px_rgba(28,28,28,1)] rotate-1">
+              Subscription Tiers
+            </h2>
+            <p className="mt-10 text-xl text-[#4A4A4A] max-w-2xl mx-auto font-serif border-2 border-dashed border-[#1C1C1C] p-6 bg-[#FDFBF7] -rotate-1">
+              Whether you need intensive board prep or just occasional help with tough concepts, we have a tier designed for your workflow.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
             {tiers.map((tier, index) => {
               const Icon = tier.icon;
+              const isPopular = tier.popular;
+              const baseClasses = "relative flex flex-col p-8 md:p-10 border-4 border-[#1C1C1C] bg-[#FDFBF7]";
+              const hoverShadow = isPopular ? "hover:shadow-[16px_16px_0px_rgba(167,243,208,1)]" : "hover:shadow-[12px_12px_0px_rgba(28,28,28,1)]";
+              const shadow = isPopular ? "shadow-[12px_12px_0px_rgba(167,243,208,1)]" : "shadow-[8px_8px_0px_rgba(28,28,28,1)]";
+              const rotation = index === 0 ? '-rotate-2' : (index === 2 ? 'rotate-2' : 'scale-105 z-10 rotate-0');
+              
               return (
-                <div key={index} className={`relative flex flex-col p-8 rounded-3xl border ${tier.popular ? 'border-brand shadow-xl shadow-brand/10 scale-105 z-10 bg-white' : 'border-slate-200 shadow-sm bg-slate-50'}`}>
-                  {tier.popular && (
-                    <div className="absolute -top-4 left-0 right-0 flex justify-center">
-                      <span className="bg-brand text-white px-4 py-1 text-sm font-bold tracking-wider uppercase rounded-full">
-                        Most Popular
+                <motion.div 
+                  key={index} 
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className={`${baseClasses} ${shadow} ${hoverShadow} ${rotation} transition-shadow duration-300`}
+                >
+                  {isPopular && (
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2">
+                      <span className="bg-[#D32F2F] text-[#FDFBF7] px-6 py-2 text-sm font-mono font-bold tracking-widest uppercase border-4 border-[#1C1C1C] shadow-[4px_4px_0px_rgba(28,28,28,1)] rotate-3 inline-block">
+                        MOST POPULAR
                       </span>
                     </div>
                   )}
                   
-                  <div className="flex justify-between items-start mb-6 mt-2">
+                  <div className="flex justify-between items-start mb-6 mt-4">
                     <div>
-                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 ${tier.popular ? 'bg-blue-50 text-brand' : 'bg-slate-200 text-slate-700'}`}>
+                      <span className="inline-block px-3 py-1 text-xs font-mono font-bold uppercase tracking-wider mb-4 bg-[#F4F4F0] border-2 border-[#1C1C1C] shadow-[2px_2px_0px_rgba(28,28,28,1)]">
                         {tier.badge}
                       </span>
-                      <h3 className="text-2xl font-bold text-slate-900">{tier.name}</h3>
+                      <h3 className="text-2xl font-mono font-black text-[#1C1C1C] uppercase leading-tight">{tier.name}</h3>
                     </div>
-                    <Icon className={`w-8 h-8 ${tier.popular ? 'text-brand' : 'text-slate-400'}`} />
+                    <Icon className="w-10 h-10 text-[#1C1C1C]" />
                   </div>
 
-                  <div className="mb-6">
-                    <span className="text-4xl font-black text-slate-900">₹{tier.amount}</span>
-                    <span className="text-slate-500 font-medium">/month</span>
+                  <div className="mb-8 pb-8 border-b-4 border-dashed border-[#1C1C1C]">
+                    <span className="text-5xl font-serif font-black text-[#1C1C1C]">₹{tier.amount}</span>
+                    <span className="text-[#4A4A4A] font-mono font-bold uppercase ml-2">/month</span>
                   </div>
                   
-                  <p className="text-slate-600 mb-8 flex-grow">
+                  <p className="text-[#1C1C1C] font-serif text-lg mb-8 leading-relaxed h-24">
                     {tier.description}
                   </p>
                   
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-0 mb-10 flex-grow">
                     {tier.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mr-3 mt-0.5" />
-                        <span className="text-slate-700">{feature}</span>
+                      <div key={idx} className="flex items-center border-b border-dashed border-[#d1d5db] py-4 last:border-0">
+                        <CheckCircle2 className="w-6 h-6 text-[#1C1C1C] shrink-0 mr-4 fill-[#A7F3D0]" />
+                        <span className="text-[#1C1C1C] font-serif font-medium">{feature}</span>
                       </div>
                     ))}
                   </div>
                   
-                  <button 
+                  <motion.button 
+                    whileHover={{ y: -4, x: -4 }} 
+                    whileTap={{ y: 2, x: 2 }} 
                     onClick={() => handleSubscribeClick(tier)}
-                    className={`block w-full py-4 rounded-xl text-center font-bold transition-all ${tier.popular ? 'bg-brand text-white hover:bg-brand-dark shadow-md' : 'bg-white border-2 border-slate-200 text-slate-700 hover:border-brand hover:text-brand'}`}
+                    className={`block w-full py-5 text-center font-mono font-bold uppercase tracking-widest border-4 border-[#1C1C1C] transition-all ${isPopular ? 'bg-[#1C1C1C] text-[#FDFBF7] shadow-[6px_6px_0px_rgba(167,243,208,1)]' : 'bg-[#FEF08A] text-[#1C1C1C] shadow-[6px_6px_0px_rgba(28,28,28,1)]'}`}
                   >
                     Subscribe Now
-                  </button>
-                </div>
+                  </motion.button>
+                </motion.div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Payment Modal */}
+      {/* Payment Modal (Styled as an overlaid clipboard form) */}
       {isModalOpen && selectedPlan && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1C1C1C]/80 backdrop-blur-md">
+          
+          <motion.div 
+            initial={{ scale: 0.9, y: 20, rotate: -2 }}
+            animate={{ scale: 1, y: 0, rotate: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-[#FDFBF7] border-4 border-[#1C1C1C] w-full max-w-md shadow-[16px_16px_0px_rgba(254,240,138,1)] relative"
+          >
+            {/* Clipboard Clip */}
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-24 h-10 bg-[#4A4A4A] border-4 border-[#1C1C1C] rounded-t-xl shadow-md z-10"></div>
+            <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-[#1C1C1C] z-20"></div>
+
             <button 
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+              className="absolute top-4 right-4 bg-[#D32F2F] text-white border-2 border-[#1C1C1C] p-1 shadow-[2px_2px_0px_rgba(28,28,28,1)] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_rgba(28,28,28,1)] transition-all z-30"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
             
-            <div className="p-8">
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">Checkout</h3>
-              <p className="text-slate-600 mb-6">You're subscribing to the <strong className="text-brand">{selectedPlan.name}</strong> plan for <strong>₹{selectedPlan.amount}</strong>.</p>
+            <div className="p-8 pt-12">
+              <h3 className="text-3xl font-mono font-black text-[#1C1C1C] mb-2 uppercase tracking-wider border-b-4 border-[#1C1C1C] pb-2 inline-block">Checkout</h3>
               
-              <form onSubmit={handlePayment} className="space-y-5">
+              <div className="bg-[#FEF08A] border-2 border-dashed border-[#1C1C1C] p-4 my-6 rotate-1">
+                <p className="text-[#1C1C1C] font-serif text-lg">
+                  Subscribing to: <br/>
+                  <strong className="font-mono text-xl uppercase tracking-wider">{selectedPlan.name}</strong> <br/>
+                  Total: <strong className="font-mono text-xl">₹{selectedPlan.amount}</strong>
+                </p>
+              </div>
+              
+              <form onSubmit={handlePayment} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-1">Full Name</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Full Name</label>
                   <input 
                     type="text" 
                     name="fullName"
                     required
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all"
+                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#A7F3D0] outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
                     placeholder="John Doe"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-1">Email Address</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Email Address</label>
                   <input 
                     type="email" 
                     name="email"
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all"
+                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#A7F3D0] outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
                     placeholder="john@example.com"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-1">Phone Number</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Phone Number</label>
                   <input 
                     type="tel" 
                     name="phone"
                     required
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand focus:border-brand outline-none transition-all"
+                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#A7F3D0] outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
                     placeholder="+91 98765 43210"
                   />
                 </div>
                 
-                <button 
-                  type="submit"
-                  disabled={isLoading}
-                  className="w-full bg-brand hover:bg-brand-dark text-white py-4 rounded-xl font-bold text-lg transition-all shadow-md flex items-center justify-center disabled:opacity-70"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                      Processing...
-                    </>
-                  ) : (
-                    `Proceed to Pay ₹${selectedPlan.amount}`
-                  )}
-                </button>
+                <div className="pt-4">
+                  <motion.button 
+                    whileHover={!isLoading ? { y: -2, x: -2 } : {}}
+                    whileTap={!isLoading ? { y: 2, x: 2 } : {}}
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full bg-[#1C1C1C] text-[#FDFBF7] py-4 border-4 border-[#1C1C1C] font-mono font-bold text-lg uppercase tracking-widest transition-all shadow-[6px_6px_0px_rgba(28,28,28,1)] flex items-center justify-center disabled:opacity-50 disabled:shadow-none disabled:translate-y-1 disabled:translate-x-1"
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin mr-2 text-[#FEF08A]" />
+                        Processing...
+                      </>
+                    ) : (
+                      `Pay ₹${selectedPlan.amount}`
+                    )}
+                  </motion.button>
+                </div>
               </form>
               
-              <p className="text-center text-xs text-slate-500 mt-6 flex items-center justify-center">
-                Secure payments powered by Razorpay
-              </p>
+              <div className="mt-6 border-t-2 border-dashed border-[#d1d5db] pt-4 text-center">
+                <p className="text-xs font-mono font-bold text-[#4A4A4A] uppercase tracking-wider flex items-center justify-center">
+                  <Zap className="w-4 h-4 mr-1 fill-[#FEF08A]" /> Secured by Razorpay
+                </p>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
 
       {/* CTA Section */}
-      <section className="py-20 bg-brand text-white text-center">
+      <section className="py-24 bg-[#FEF08A] border-t-4 border-[#1C1C1C] text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Not sure which plan fits you best?</h2>
-          <p className="text-xl text-brand-light mb-10">
-            Book a free counseling session with our academic experts. We'll help you map out the perfect subscription strategy for your goals.
+          <h2 className="text-3xl md:text-5xl font-mono font-black text-[#1C1C1C] uppercase tracking-widest mb-8">Not sure which plan?</h2>
+          <p className="text-xl text-[#1C1C1C] font-serif mb-12 max-w-2xl mx-auto border-2 border-[#1C1C1C] p-6 bg-[#FDFBF7] rotate-1">
+            Book a free counseling session. We'll help you map out the perfect subscription strategy for your academic goals.
           </p>
-          <Link to="/contact" className="inline-block bg-white text-brand px-10 py-4 rounded-full text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
-            Talk to an Expert
-          </Link>
+          <motion.div whileHover={{ y: -4, x: -4 }} whileTap={{ y: 2, x: 2 }} transition={{ type: "spring", stiffness: 400, damping: 10 }} className="inline-block">
+            <Link 
+              to="/contact" 
+              className="bg-[#1C1C1C] text-[#FDFBF7] px-10 py-5 text-xl font-mono font-bold uppercase tracking-widest shadow-[8px_8px_0px_rgba(28,28,28,1)] hover:shadow-[10px_10px_0px_rgba(28,28,28,1)] transition-shadow inline-block border-4 border-[#1C1C1C] -rotate-1"
+            >
+              Talk to an Expert
+            </Link>
+          </motion.div>
         </div>
       </section>
     </>

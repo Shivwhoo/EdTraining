@@ -4,6 +4,32 @@
 
 @layer base {
   body {
-    @apply antialiased text-gray-900 bg-white;
+    @apply antialiased text-[#1C1C1C] bg-[#FDFBF7] selection:bg-[#FEF08A] selection:text-[#1C1C1C];
+  }
+
+  /* Custom Selection for Firefox compatibility */
+  ::-moz-selection {
+    @apply bg-[#FEF08A] text-[#1C1C1C];
+  }
+
+  ::selection {
+    @apply bg-[#FEF08A] text-[#1C1C1C];
+  }
+
+  /* Custom Brutalist Scrollbar */
+  ::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-[#F4F4F0] border-l-2 border-[#1C1C1C];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#1C1C1C] border-2 border-[#F4F4F0];
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#4A4A4A];
   }
 }

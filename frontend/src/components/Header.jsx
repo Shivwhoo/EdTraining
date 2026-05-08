@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Header() {
   const navLinks = [
@@ -21,32 +22,35 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-[#FDFBF7] border-b-2 border-[#1C1C1C] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
+          
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
               <img src="/edTraining.avif" alt="EdTraining" className="h-16 md:h-20 w-auto" />
             </Link>
           </div>
-          <nav className="hidden md:flex space-x-8">
+
+          <nav className="hidden md:flex space-x-4 lg:space-x-8">
             {navLinks.map((link) => (
               link.dropdown ? (
                 <div key={link.name} className="relative group flex items-center">
                   <Link
                     to={link.path}
-                    className="text-gray-600 hover:text-brand px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+                    className="text-[#4A4A4A] hover:text-[#1C1C1C] hover:bg-[#FEF08A] border-2 border-transparent hover:border-[#1C1C1C] px-3 py-2 text-sm font-mono font-bold uppercase tracking-wider transition-all flex items-center"
                   >
                     {link.name}
-                    <ChevronDown className="ml-1 w-4 h-4 text-slate-400 group-hover:text-brand transition-colors" />
+                    <ChevronDown className="ml-1 w-4 h-4 text-[#4A4A4A] group-hover:text-[#1C1C1C] transition-colors" />
                   </Link>
-                  <div className="absolute top-full left-0 mt-0 w-56 rounded-b-md rounded-t-sm shadow-xl bg-white border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="py-2">
+                  
+                  <div className="absolute top-full left-0 mt-2 w-64 bg-[#FDFBF7] border-2 border-[#1C1C1C] shadow-[4px_4px_0px_rgba(28,28,28,1)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 origin-top-left -rotate-1 group-hover:rotate-0">
+                    <div className="py-2 flex flex-col">
                       {link.dropdown.map(subLink => (
                         <Link
                           key={subLink.name}
                           to={subLink.path}
-                          className="block px-5 py-2.5 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand transition-colors"
+                          className="block px-5 py-3 text-sm font-mono text-[#4A4A4A] hover:bg-[#FEF08A] hover:text-[#1C1C1C] hover:font-bold border-b border-dashed border-[#d1d5db] last:border-0 transition-colors"
                         >
                           {subLink.name}
                         </Link>
@@ -55,24 +59,33 @@ export default function Header() {
                   </div>
                 </div>
               ) : (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className="text-gray-600 hover:text-brand px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
-                >
-                  {link.name}
-                </Link>
+                <div key={link.name} className="flex items-center">
+                  <Link
+                    to={link.path}
+                    className="text-[#4A4A4A] hover:text-[#1C1C1C] hover:bg-[#FEF08A] border-2 border-transparent hover:border-[#1C1C1C] px-3 py-2 text-sm font-mono font-bold uppercase tracking-wider transition-all flex items-center"
+                  >
+                    {link.name}
+                  </Link>
+                </div>
               )
             ))}
           </nav>
+
           <div className="hidden md:flex items-center">
-            <Link
-              to="/booking-a-demo-class"
-              className="bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg"
+            <motion.div
+              whileHover={{ y: -2, x: -2 }}
+              whileTap={{ y: 2, x: 2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              Demo Booking
-            </Link>
+              <Link
+                to="/booking-a-demo-class"
+                className="bg-[#FEF08A] text-[#1C1C1C] border-2 border-[#1C1C1C] px-6 py-2.5 text-sm font-mono font-bold uppercase tracking-wider shadow-[4px_4px_0px_rgba(28,28,28,1)] hover:shadow-[6px_6px_0px_rgba(28,28,28,1)] transition-shadow inline-block"
+              >
+                Demo Booking
+              </Link>
+            </motion.div>
           </div>
+
         </div>
       </div>
     </header>
