@@ -119,7 +119,7 @@ export default function OnlineSubscription() {
 
     setIsLoading(true);
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://edtraining.onrender.com';
       
       const orderRes = await fetch(`${apiUrl}/api/payment/create-order`, {
         method: 'POST',

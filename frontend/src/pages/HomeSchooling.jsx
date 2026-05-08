@@ -23,7 +23,7 @@ export default function HomeSchooling() {
   const onSubmit = async (data) => {
     setStatus('submitting');
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const API_URL = import.meta.env.VITE_API_URL || 'https://edtraining.onrender.com';
       const res = await fetch(`${API_URL}/api/homeschool-consult`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
