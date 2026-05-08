@@ -26,7 +26,7 @@ app.use(cors({
     if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
 
     // Allow ALL Vercel preview deployments for this project
-    if (origin.match(/https:\/\/ed-training-2346.*\.vercel\.app$/)) {
+    if (origin.match(/https:\/\/ed-training.*\.vercel\.app$/)) {
       return callback(null, true);
     }
 
