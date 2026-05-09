@@ -113,7 +113,7 @@ router.post('/verify', async (req, res) => {
     }
 
     // Send Emails
-    const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER || 'help@theedtraining.com';
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.SMTP_USER || 'shivamkishore009@gmail.com';
     const senderEmail = process.env.SENDER_EMAIL || 'onboarding@resend.dev';
 
     const htmlContent = `
