@@ -148,27 +148,7 @@ EdTraining/
     └── server.js                # Express app + CORS + rate limiting
 ```
 
----
 
-## ⚙️ Environment Variables
-
-### Frontend (`frontend/.env`)
-```env
-VITE_API_URL=https://edtraining.onrender.com
-VITE_RAZORPAY_KEY_ID=your_razorpay_key_id
-```
-
-### Backend (`backend/.env`)
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_atlas_uri
-FRONTEND_URL=https://ed-training.vercel.app
-RESEND_API_KEY=your_resend_api_key
-ADMIN_EMAIL=your_admin_email
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_key_secret
-RAZORPAY_WEBHOOK_SECRET=your_webhook_secret
-```
 
 ---
 
