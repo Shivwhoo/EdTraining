@@ -206,7 +206,7 @@ npm run dev
 
 <div align="center">
 
-Made with ❤️ by **Shivam Keshri**
+Made with ❤️ by **Shivam Kishore**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Shivwhoo-1C1C1C?style=flat-square&logo=github)](https://github.com/Shivwhoo)
 
