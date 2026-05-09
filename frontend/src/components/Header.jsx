@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,6 +12,17 @@ export default function Header() {
     setMobileOpen(false);
     setCoursesOpen(false);
   };
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileOpen]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -123,105 +134,128 @@ export default function Header() {
           {/* Mobile Hamburger */}
           <button
             className="md:hidden flex items-center justify-center w-10 h-10 border-2 border-[#1C1C1C] bg-[#FDFBF7] shadow-[3px_3px_0px_rgba(28,28,28,1)] active:shadow-none active:translate-x-[3px] active:translate-y-[3px] transition-all"
-            onClick={() => setMobileOpen(prev => !prev)}
-            aria-label="Toggle menu"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open menu"
           >
-            {mobileOpen ? <X className="w-5 h-5 text-[#1C1C1C]" /> : <Menu className="w-5 h-5 text-[#1C1C1C]" />}
+            <Menu className="w-5 h-5 text-[#1C1C1C]" />
           </button>
 
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer Overlay */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden border-t-2 border-[#1C1C1C] bg-[#FDFBF7]"
-          >
-            <div className="flex flex-col px-4 py-3 gap-1">
-              {navLinks.map((link) => {
-                const isDropdownActive = link.dropdown
-                  ? link.dropdown.some(sub => pathname === sub.path) || pathname === link.path
-                  : false;
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] md:hidden"
+              onClick={closeMobile}
+            />
 
-                if (link.dropdown) {
+            {/* Slide-out Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-[#FDFBF7] border-l-2 border-[#1C1C1C] shadow-[-8px_0_0_rgba(28,28,28,0.1)] z-[70] md:hidden flex flex-col overflow-y-auto"
+            >
+              <div className="flex justify-between items-center p-4 border-b-2 border-[#1C1C1C]">
+                <span className="font-mono font-bold uppercase tracking-wider text-lg text-[#1C1C1C]">Menu</span>
+                <button
+                  className="flex items-center justify-center w-10 h-10 border-2 border-[#1C1C1C] bg-[#FEF08A] shadow-[3px_3px_0px_rgba(28,28,28,1)] active:shadow-none active:translate-x-[3px] active:translate-y-[3px] transition-all"
+                  onClick={closeMobile}
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5 text-[#1C1C1C]" />
+                </button>
+              </div>
+
+              <div className="flex flex-col p-6 gap-3 flex-grow">
+                {navLinks.map((link) => {
+                  const isDropdownActive = link.dropdown
+                    ? link.dropdown.some(sub => pathname === sub.path) || pathname === link.path
+                    : false;
+
+                  if (link.dropdown) {
+                    return (
+                      <div key={link.name} className="flex flex-col gap-1">
+                        <button
+                          onClick={() => setCoursesOpen(prev => !prev)}
+                          className={`w-full flex items-center justify-between px-4 py-3 text-sm font-mono font-bold uppercase tracking-wider border-2 transition-all ${
+                            isDropdownActive
+                              ? 'bg-[#FEF08A] text-[#1C1C1C] border-[#1C1C1C]'
+                              : 'text-[#4A4A4A] border-transparent hover:border-[#1C1C1C]'
+                          }`}
+                        >
+                          {link.name}
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${coursesOpen ? 'rotate-180' : ''}`} />
+                        </button>
+
+                        <AnimatePresence>
+                          {coursesOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden flex flex-col gap-1 ml-2 border-l-2 border-dashed border-[#1C1C1C] pl-2 mt-1"
+                            >
+                              {link.dropdown.map(subLink => (
+                                <NavLink
+                                  key={subLink.name}
+                                  to={subLink.path}
+                                  onClick={closeMobile}
+                                  className={({ isActive }) =>
+                                    `block px-4 py-3 text-sm font-mono transition-colors border-2 ${
+                                      isActive
+                                        ? 'bg-[#FEF08A] text-[#1C1C1C] font-bold border-[#1C1C1C]'
+                                        : 'text-[#4A4A4A] border-transparent hover:border-[#1C1C1C]'
+                                    }`
+                                  }
+                                >
+                                  {subLink.name}
+                                </NavLink>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  }
+
                   return (
-                    <div key={link.name}>
-                      {/* Courses toggle row */}
-                      <button
-                        onClick={() => setCoursesOpen(prev => !prev)}
-                        className={`w-full flex items-center justify-between px-3 py-2.5 text-sm font-mono font-bold uppercase tracking-wider border-2 transition-all ${
-                          isDropdownActive
+                    <NavLink
+                      key={link.name}
+                      to={link.path}
+                      end={link.path === '/'}
+                      onClick={closeMobile}
+                      className={({ isActive }) =>
+                        `block px-4 py-3 text-sm font-mono font-bold uppercase tracking-wider border-2 transition-all ${
+                          isActive
                             ? 'bg-[#FEF08A] text-[#1C1C1C] border-[#1C1C1C]'
-                            : 'text-[#4A4A4A] border-transparent'
-                        }`}
-                      >
-                        {link.name}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${coursesOpen ? 'rotate-180' : ''}`} />
-                      </button>
-
-                      <AnimatePresence>
-                        {coursesOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="overflow-hidden ml-4 border-l-2 border-dashed border-[#1C1C1C]"
-                          >
-                            {link.dropdown.map(subLink => (
-                              <NavLink
-                                key={subLink.name}
-                                to={subLink.path}
-                                onClick={closeMobile}
-                                className={({ isActive }) =>
-                                  `block px-4 py-2.5 text-sm font-mono border-b border-dashed border-[#d1d5db] last:border-0 transition-colors ${
-                                    isActive
-                                      ? 'bg-[#FEF08A] text-[#1C1C1C] font-bold'
-                                      : 'text-[#4A4A4A]'
-                                  }`
-                                }
-                              >
-                                {subLink.name}
-                              </NavLink>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                            : 'text-[#4A4A4A] border-transparent hover:border-[#1C1C1C]'
+                        }`
+                      }
+                    >
+                      {link.name}
+                    </NavLink>
                   );
-                }
-
-                return (
-                  <NavLink
-                    key={link.name}
-                    to={link.path}
-                    end={link.path === '/'}
-                    onClick={closeMobile}
-                    className={({ isActive }) =>
-                      `block px-3 py-2.5 text-sm font-mono font-bold uppercase tracking-wider border-2 transition-all ${
-                        isActive
-                          ? 'bg-[#FEF08A] text-[#1C1C1C] border-[#1C1C1C]'
-                          : 'text-[#4A4A4A] border-transparent'
-                      }`
-                    }
-                  >
-                    {link.name}
-                  </NavLink>
-                );
-              })}
+                })}
+              </div>
 
               {/* Mobile Demo Booking CTA */}
-              <div className="pt-2 pb-1">
+              <div className="p-6 border-t-2 border-[#1C1C1C] bg-[#FDFBF7]">
                 <NavLink
                   to="/booking-a-demo-class"
                   onClick={closeMobile}
                   className={({ isActive }) =>
-                    `block text-center px-6 py-3 text-sm font-mono font-bold uppercase tracking-wider border-2 border-[#1C1C1C] shadow-[4px_4px_0px_rgba(28,28,28,1)] transition-all ${
+                    `block text-center w-full px-6 py-4 text-sm font-mono font-bold uppercase tracking-wider border-2 border-[#1C1C1C] shadow-[4px_4px_0px_rgba(28,28,28,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all ${
                       isActive
                         ? 'bg-[#1C1C1C] text-[#FEF08A]'
                         : 'bg-[#FEF08A] text-[#1C1C1C]'
@@ -231,8 +265,8 @@ export default function Header() {
                   Book a Demo Class
                 </NavLink>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
