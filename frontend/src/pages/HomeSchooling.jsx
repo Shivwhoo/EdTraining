@@ -98,19 +98,19 @@ export default function HomeSchooling() {
               </h3>
               <ul className="space-y-4 mb-10 font-serif text-lg text-[#1C1C1C]">
                 <li className="flex items-start">
-                  <span className="text-[#D32F2F] font-bold mr-3 mt-1 text-xl leading-none">×</span>
+                  <span className="text-[#16A34A] font-bold mr-3 mt-1 text-xl leading-none">✓</span>
                   Individualized learning preference
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[#D32F2F] font-bold mr-3 mt-1 text-xl leading-none">×</span>
+                  <span className="text-[#16A34A] font-bold mr-3 mt-1 text-xl leading-none">✓</span>
                   Independent board prep
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[#D32F2F] font-bold mr-3 mt-1 text-xl leading-none">×</span>
+                  <span className="text-[#16A34A] font-bold mr-3 mt-1 text-xl leading-none">✓</span>
                   Flexibility for sports/arts professionals
                 </li>
                 <li className="flex items-start">
-                  <span className="text-[#D32F2F] font-bold mr-3 mt-1 text-xl leading-none">×</span>
+                  <span className="text-[#16A34A] font-bold mr-3 mt-1 text-xl leading-none">✓</span>
                   Alternative family education
                 </li>
               </ul>

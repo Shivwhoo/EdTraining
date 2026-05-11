@@ -46,7 +46,7 @@ export default function Grade11To12() {
               <ul className="space-y-0 flex-grow">
                 {boards.map((board) => (
                   <li key={board} className="flex items-center text-lg text-[#1C1C1C] font-serif border-b border-dashed border-[#d1d5db] py-4 last:border-0">
-                    <CheckCircle2 className="w-6 h-6 text-[#D32F2F] mr-4 flex-shrink-0" />
+                    <CheckCircle2 className="w-6 h-6 text-[#16A34A] mr-4 flex-shrink-0" />
                     {board}
                   </li>
                 ))}
@@ -66,19 +66,19 @@ export default function Grade11To12() {
               </h2>
               <ul className="space-y-0 flex-grow">
                 <li className="flex items-center text-lg text-[#1C1C1C] font-serif border-b border-dashed border-[#d1d5db] py-4">
-                  <CheckCircle2 className="w-6 h-6 text-[#D32F2F] mr-4 flex-shrink-0" />
+                  <CheckCircle2 className="w-6 h-6 text-[#16A34A] mr-4 flex-shrink-0" />
                   Physics
                 </li>
                 <li className="flex items-center text-lg text-[#1C1C1C] font-serif border-b border-dashed border-[#d1d5db] py-4">
-                  <CheckCircle2 className="w-6 h-6 text-[#D32F2F] mr-4 flex-shrink-0" />
+                  <CheckCircle2 className="w-6 h-6 text-[#16A34A] mr-4 flex-shrink-0" />
                   Chemistry
                 </li>
                 <li className="flex items-center text-lg text-[#1C1C1C] font-serif border-b border-dashed border-[#d1d5db] py-4">
-                  <CheckCircle2 className="w-6 h-6 text-[#D32F2F] mr-4 flex-shrink-0" />
+                  <CheckCircle2 className="w-6 h-6 text-[#16A34A] mr-4 flex-shrink-0" />
                   Mathematics / Biology
                 </li>
                 <li className="flex items-center text-lg text-[#1C1C1C] font-serif border-b border-dashed border-[#d1d5db] py-4 border-transparent">
-                  <CheckCircle2 className="w-6 h-6 text-[#D32F2F] mr-4 flex-shrink-0" />
+                  <CheckCircle2 className="w-6 h-6 text-[#16A34A] mr-4 flex-shrink-0" />
                   Optional Subjects
                 </li>
               </ul>

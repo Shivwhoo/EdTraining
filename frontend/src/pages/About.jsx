@@ -62,7 +62,7 @@ export default function About() {
               </div>
 
               <p>
-                At EdTraining, we realized that education isn't just about cramming information into your head—<span className="bg-[#FEF08A] font-bold px-1">it's about who you become.</span> The traditional model expects every student to learn at the exact same pace, in the exact same way. We think that's broken.
+                At EdTraining, we realized that education isn't just about cramming information into your head—<span className="bg-[#FEF08A] font-bold px-1 text-[#16A34A]">it's about who you become.</span> The traditional model expects every student to learn at the exact same pace, in the exact same way. We think that's broken.
               </p>
               
               <p>
@@ -71,7 +71,7 @@ export default function About() {
 
               {/* Highlight Box inside text */}
               <div className="bg-[#F4F4F0] border-l-8 border-[#1C1C1C] p-6 my-10 font-mono text-lg">
-                <span className="text-[#D32F2F] font-bold mb-2 block uppercase tracking-wider">The Subscription Freedom:</span>
+                <span className="text-[#16A34A] font-bold mb-2 block uppercase tracking-wider">The Subscription Freedom:</span>
                 We built a flexible subscription model that allows you to pay <span className="underline decoration-wavy">only for what you need.</span> Need intensive help with calculus this month, but just a light review for physics? You control the dial.
               </div>
 
@@ -104,7 +104,7 @@ export default function About() {
                   <div className="w-4 h-4 bg-gray-400 rounded-full"></div>{/* Thumbtack */}
                 </div>
                 <Compass className="w-10 h-10 text-[#1C1C1C] mb-6 mt-4" />
-                <h3 className="text-xl font-mono font-bold text-[#1C1C1C] uppercase tracking-wider mb-4 border-b-2 border-[#1C1C1C] pb-2">Autonomy</h3>
+                <h3 className="text-xl font-mono font-bold text-[#16A34A] uppercase tracking-wider mb-4 border-b-2 border-[#16A34A] pb-2">Autonomy</h3>
                 <p className="font-serif text-lg text-[#1C1C1C] leading-relaxed">
                   Your education, your schedule. Whether you are home-schooling or prepping for Olympiads, you set the pace.
                 </p>
@@ -115,7 +115,7 @@ export default function About() {
                   <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
                 </div>
                 <Lightbulb className="w-10 h-10 text-[#1C1C1C] mb-6 mt-4" />
-                <h3 className="text-xl font-mono font-bold text-[#1C1C1C] uppercase tracking-wider mb-4 border-b-2 border-[#1C1C1C] pb-2">Mastery</h3>
+                <h3 className="text-xl font-mono font-bold text-[#16A34A] uppercase tracking-wider mb-4 border-b-2 border-[#16A34A] pb-2">Mastery</h3>
                 <p className="font-serif text-lg text-[#1C1C1C] leading-relaxed">
                   We focus on deep conceptual understanding over rote memorization. Know the 'why', not just the 'how'.
                 </p>
@@ -126,7 +126,7 @@ export default function About() {
                   <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
                 </div>
                 <CheckSquare className="w-10 h-10 text-[#1C1C1C] mb-6 mt-4" />
-                <h3 className="text-xl font-mono font-bold text-[#1C1C1C] uppercase tracking-wider mb-4 border-b-2 border-[#1C1C1C] pb-2">Mentorship</h3>
+                <h3 className="text-xl font-mono font-bold text-[#16A34A] uppercase tracking-wider mb-4 border-b-2 border-[#16A34A] pb-2">Mentorship</h3>
                 <p className="font-serif text-lg text-[#1C1C1C] leading-relaxed">
                   Learn from experts who don't just teach the syllabus, but guide you on how to apply it to your future career.
                 </p>

@@ -117,9 +117,9 @@ export default function DemoBooking() {
                   </label>
                   <input
                     {...register('studentContactNumber')}
-                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
+                    className={`w-full px-4 py-3 bg-[#F4F4F0] border-2 focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C] ${errors.studentContactNumber ? 'border-[#D32F2F]' : 'border-[#1C1C1C]'}`}
                   />
-                  {errors.studentContactNumber && <p className="text-[#D32F2F] font-mono text-sm mt-2 font-bold uppercase">{errors.studentContactNumber.message}</p>}
+                  {errors.studentContactNumber && <p className="text-[#D32F2F] font-mono text-xs mt-2 tracking-wide bg-[#FEE2E2] border-l-4 border-[#D32F2F] px-3 py-1.5">⚠ {errors.studentContactNumber.message}</p>}
                 </div>
                 
                 <div>
@@ -141,9 +141,9 @@ export default function DemoBooking() {
                   <input
                     type="email"
                     {...register('email')}
-                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
+                    className={`w-full px-4 py-3 bg-[#F4F4F0] border-2 focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C] ${errors.email ? 'border-[#D32F2F]' : 'border-[#1C1C1C]'}`}
                   />
-                  {errors.email && <p className="text-[#D32F2F] font-mono text-sm mt-2 font-bold uppercase">{errors.email.message}</p>}
+                  {errors.email && <p className="text-[#D32F2F] font-mono text-xs mt-2 tracking-wide bg-[#FEE2E2] border-l-4 border-[#D32F2F] px-3 py-1.5">⚠ {errors.email.message}</p>}
                 </div>
 
                 <div>
@@ -153,7 +153,7 @@ export default function DemoBooking() {
                   <div className="relative">
                     <select
                       {...register('subjectCategory')}
-                      className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C] appearance-none cursor-pointer"
+                      className={`w-full px-4 py-3 bg-[#F4F4F0] border-2 focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C] appearance-none cursor-pointer ${errors.subjectCategory ? 'border-[#D32F2F]' : 'border-[#1C1C1C]'}`}
                     >
                       <option value="">Select a category</option>
                       <option value="Classes 8th to 10th (All Boards)">Classes 8th to 10th (All Boards)</option>
@@ -168,7 +168,7 @@ export default function DemoBooking() {
                       ▼
                     </div>
                   </div>
-                  {errors.subjectCategory && <p className="text-[#D32F2F] font-mono text-sm mt-2 font-bold uppercase">{errors.subjectCategory.message}</p>}
+                  {errors.subjectCategory && <p className="text-[#D32F2F] font-mono text-xs mt-2 tracking-wide bg-[#FEE2E2] border-l-4 border-[#D32F2F] px-3 py-1.5">⚠ {errors.subjectCategory.message}</p>}
                 </div>
               </div>
 
@@ -179,9 +179,9 @@ export default function DemoBooking() {
                 <textarea
                   rows={5}
                   {...register('message')}
-                  className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C] resize-none"
+                  className={`w-full px-4 py-3 bg-[#F4F4F0] border-2 focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C] resize-none ${errors.message ? 'border-[#D32F2F]' : 'border-[#1C1C1C]'}`}
                 />
-                {errors.message && <p className="text-[#D32F2F] font-mono text-sm mt-2 font-bold uppercase">{errors.message.message}</p>}
+                {errors.message && <p className="text-[#D32F2F] font-mono text-xs mt-2 tracking-wide bg-[#FEE2E2] border-l-4 border-[#D32F2F] px-3 py-1.5">⚠ {errors.message.message}</p>}
               </div>
 
               <div className="pt-6">
