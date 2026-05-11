@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
@@ -136,9 +137,14 @@ export default function Contact() {
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full md:w-auto bg-[#1C1C1C] text-[#FDFBF7] font-mono font-bold text-xl uppercase tracking-widest py-4 px-12 border-4 border-[#1C1C1C] shadow-[8px_8px_0px_rgba(167,243,208,1)] hover:shadow-[10px_10px_0px_rgba(167,243,208,1)] transition-shadow disabled:opacity-50 disabled:shadow-[4px_4px_0px_rgba(167,243,208,1)] disabled:cursor-not-allowed inline-block"
+                  className="w-full md:w-auto bg-[#1C1C1C] text-[#FDFBF7] font-mono font-bold text-xl uppercase tracking-widest py-4 px-12 border-4 border-[#1C1C1C] shadow-[8px_8px_0px_rgba(167,243,208,1)] hover:shadow-[10px_10px_0px_rgba(167,243,208,1)] transition-shadow disabled:opacity-50 disabled:shadow-[4px_4px_0px_rgba(167,243,208,1)] disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  {status === 'submitting' ? 'Sending...' : 'Send Message'}
+                  {status === 'submitting' ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin mr-2 text-[#A7F3D0]" />
+                      Sending...
+                    </>
+                  ) : 'Send Message'}
                 </motion.button>
               </div>
             </form>

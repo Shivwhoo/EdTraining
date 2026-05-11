@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
@@ -134,7 +135,7 @@ export default function HomeSchooling() {
               
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Full Name</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Full Name <span className="text-[#D32F2F] text-lg leading-none">*</span></label>
                   <input
                     {...register('fullName')}
                     className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
@@ -143,7 +144,7 @@ export default function HomeSchooling() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Contact Number</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Contact Number <span className="text-[#D32F2F] text-lg leading-none">*</span></label>
                   <input
                     {...register('contactNumber')}
                     className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
@@ -152,7 +153,7 @@ export default function HomeSchooling() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Email</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Email <span className="text-[#D32F2F] text-lg leading-none">*</span></label>
                   <input
                     type="email"
                     {...register('email')}
@@ -162,7 +163,7 @@ export default function HomeSchooling() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Message</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Message <span className="text-[#D32F2F] text-lg leading-none">*</span></label>
                   <textarea
                     rows={4}
                     {...register('message')}
@@ -177,9 +178,14 @@ export default function HomeSchooling() {
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full bg-[#1C1C1C] text-[#FDFBF7] font-mono font-bold text-lg uppercase tracking-widest py-4 px-4 border-4 border-[#1C1C1C] shadow-[8px_8px_0px_rgba(254,240,138,1)] hover:shadow-[10px_10px_0px_rgba(254,240,138,1)] transition-shadow disabled:opacity-50 disabled:shadow-[4px_4px_0px_rgba(254,240,138,1)] disabled:cursor-not-allowed"
+                  className="w-full bg-[#1C1C1C] text-[#FDFBF7] font-mono font-bold text-lg uppercase tracking-widest py-4 px-4 border-4 border-[#1C1C1C] shadow-[8px_8px_0px_rgba(254,240,138,1)] hover:shadow-[10px_10px_0px_rgba(254,240,138,1)] transition-shadow disabled:opacity-50 disabled:shadow-[4px_4px_0px_rgba(254,240,138,1)] disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  {status === 'submitting' ? 'Submitting...' : 'Submit Request'}
+                  {status === 'submitting' ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin mr-2 text-[#FEF08A]" />
+                      Submitting...
+                    </>
+                  ) : 'Submit Request'}
                 </motion.button>
               </form>
             </div>

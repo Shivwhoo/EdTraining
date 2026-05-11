@@ -397,40 +397,40 @@ export default function OnlineSubscription() {
               
               <form onSubmit={handlePayment} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Full Name</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Full Name <span className="text-[#D32F2F] text-lg leading-none">*</span></label>
                   <input 
                     type="text" 
                     name="fullName"
                     required
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#A7F3D0] outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
+                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
                     placeholder="John Doe"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Email Address</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Email Address <span className="text-[#D32F2F] text-lg leading-none">*</span></label>
                   <input 
                     type="email" 
                     name="email"
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#A7F3D0] outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
+                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
                     placeholder="john@example.com"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Phone Number</label>
+                  <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">Phone Number <span className="text-[#D32F2F] text-lg leading-none">*</span></label>
                   <input 
                     type="tel" 
                     name="phone"
                     required
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#A7F3D0] outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
+                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
                     placeholder="+91 98765 43210"
                   />
                 </div>
