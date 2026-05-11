@@ -69,7 +69,7 @@ export default function OnlineSubscription() {
         'No long-term commitment',
       ],
       icon: Zap,
-      amount: 499,
+      amount: 4,
     },
     {
       name: 'CBSE Master Package',
@@ -83,7 +83,7 @@ export default function OnlineSubscription() {
       ],
       icon: BookOpen,
       popular: true,
-      amount: 499,
+      amount: 4,
     },
     {
       name: 'ICSE Master Package',
@@ -96,7 +96,7 @@ export default function OnlineSubscription() {
         'Extensive question banks',
       ],
       icon: CheckCircle2,
-      amount: 499,
+      amount: 4,
     },
   ];
 

@@ -44,7 +44,7 @@ router.post('/create-order', async (req, res) => {
       receipt: `receipt_order_${Date.now()}`,
     };
     
-    const order = await razorpay.orders.create(options);
+    const order = await razorpay.orders.create(options);  //reeturn orderid ,amt and currency
     
     // Pre-create the subscription record with Pending status
     await SubscriptionPayment.create({
