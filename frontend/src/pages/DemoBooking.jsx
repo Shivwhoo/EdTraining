@@ -8,11 +8,11 @@ import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
 const schema = z.object({
-  studentName: z.string().optional(),
+  studentName: z.string(),
   parentGuardianName: z.string().optional(),
-  studentContactNumber: z.string().min(10, 'Valid contact number is required'),
+  studentContactNumber: z.string().min(10, 'Cannot be empty'),
   parentContactNumber: z.string().optional(),
-  email: z.string().email('Invalid email address'),
+  email: z.string().email('Cannot be empty'),
   subjectCategory: z.enum([
     "Classes 8th to 10th (All Boards)",
     "Classes 11th to 12th (All Boards)",
@@ -20,8 +20,8 @@ const schema = z.object({
     "Career Guidance",
     "Engineering (All Branches)",
     "BBA, BCA, BCom, MCom, MCA"
-  ], { required_error: 'Please select a category' }),
-  message: z.string().min(1, 'Message is required'),
+  ], { required_error: 'Cannot be empty' }),
+  message: z.string().min(1, 'Cannot be empty'),
 });
 
 export default function DemoBooking() {
@@ -91,7 +91,7 @@ export default function DemoBooking() {
               <div className="grid md:grid-cols-2 gap-8 md:gap-6">
                 <div>
                   <label className="block text-sm font-mono font-bold uppercase tracking-wider text-[#1C1C1C] mb-2">
-                    Student Name <span className="text-[#4A4A4A] font-normal text-xs">(Optional)</span>
+                    Student Name <span className="text-[#D32F2F] text-lg leading-none">*</span>
                   </label>
                   <input
                     {...register('studentName')}
