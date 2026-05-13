@@ -8,19 +8,12 @@ import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
 const schema = z.object({
-  studentName: z.string(),
+  studentName: z.string().min(1, 'Cannot be empty'),
   parentGuardianName: z.string().optional(),
-  studentContactNumber: z.string().min(10, 'Cannot be empty'),
+  studentContactNumber: z.string().min(1, 'Cannot be empty').min(10, 'Cannot be empty'),
   parentContactNumber: z.string().optional(),
-  email: z.string().email('Cannot be empty'),
-  subjectCategory: z.enum([
-    "Classes 8th to 10th (All Boards)",
-    "Classes 11th to 12th (All Boards)",
-    "Competitive Exams",
-    "Career Guidance",
-    "Engineering (All Branches)",
-    "BBA, BCA, BCom, MCom, MCA"
-  ], { required_error: 'Cannot be empty' }),
+  email: z.string().min(1, 'Cannot be empty').email('Invalid email address'),
+  subjectCategory: z.string().min(1, 'Cannot be empty'),
   message: z.string().min(1, 'Cannot be empty'),
 });
 
@@ -95,8 +88,9 @@ export default function DemoBooking() {
                   </label>
                   <input
                     {...register('studentName')}
-                    className="w-full px-4 py-3 bg-[#F4F4F0] border-2 border-[#1C1C1C] focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C]"
+                    className={`w-full px-4 py-3 bg-[#F4F4F0] border-2 focus:bg-[#FEF08A] focus:outline-none transition-colors font-serif text-lg text-[#1C1C1C] ${errors.studentName ? 'border-[#D32F2F]' : 'border-[#1C1C1C]'}`}
                   />
+                  {errors.studentName && <p className="text-[#D32F2F] font-mono text-xs mt-2 tracking-wide bg-[#FEE2E2] border-l-4 border-[#D32F2F] px-3 py-1.5">⚠ {errors.studentName.message}</p>}
                 </div>
                 
                 <div>
