@@ -38,7 +38,6 @@ export default function Header() {
       ]
     },
     { name: 'Online Subscription', path: '/online-subscription' },
-    { name: 'Career Guidance', path: '/career-guidance' },
     { name: 'Home Schooling', path: '/home-schooling' },
     { name: 'Contact', path: '/contact' },
   ];
