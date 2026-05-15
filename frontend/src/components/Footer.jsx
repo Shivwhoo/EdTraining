@@ -13,9 +13,17 @@ export default function Footer() {
               About Us
             </h3>
             <div className="mb-6">
-              <Link to="/" className="inline-block bg-[#FDFBF7] border-2 border-[#1C1C1C] p-2 shadow-[4px_4px_0px_rgba(28,28,28,1)] -rotate-1 hover:rotate-0 transition-transform">
-                <img src="/edTraining.avif" alt="EdTraining" className="h-16 w-auto" />
-              </Link>
+              <div className="inline-block mb-4">
+                <Link to="/" className="inline-block bg-[#FDFBF7] border-2 border-[#1C1C1C] p-2 shadow-[4px_4px_0px_rgba(28,28,28,1)] -rotate-1 hover:rotate-0 transition-transform">
+                  <img src="/edTraining.avif" alt="EdTraining" className="h-16 w-auto" />
+                </Link>
+              </div>
+              <div className="text-[#4A4A4A] font-mono text-sm">
+                Powered by{' '}
+                <a href="https://theedmentor.com/" target="_blank" rel="noopener noreferrer" className="text-[#1C1C1C] font-bold hover:bg-[#FEF08A] px-1 -ml-1 transition-colors border border-transparent hover:border-[#1C1C1C]">
+                  EdMentor
+                </a>
+              </div>
             </div>
             <p className="text-[#4A4A4A] font-serif text-base leading-relaxed mb-8">
               Bridging academic learning and real-world success through personalized guidance and flexible online programs.
