@@ -48,7 +48,7 @@ export default function CareerGuidance() {
             <div className="flex justify-center">
               <motion.div whileHover={{ y: -4, x: -4 }} whileTap={{ y: 2, x: 2 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                 <Link to="/booking-a-demo-class" className="bg-[#1C1C1C] text-[#FDFBF7] px-8 py-5 text-lg font-mono font-bold uppercase tracking-wider shadow-[8px_8px_0px_rgba(251,207,232,1)] hover:shadow-[10px_10px_0px_rgba(251,207,232,1)] transition-shadow inline-block border-4 border-[#1C1C1C]">
-                  Book a Counseling Session
+                  Book a Demo Class Now
                 </Link>
               </motion.div>
             </div>
